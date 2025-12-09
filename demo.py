@@ -7,7 +7,10 @@ import os
 # -----------------------------------------
 #  PUT YOUR API KEY HERE (unsafe but works)
 # -----------------------------------------
-API_KEY = "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"
+from dotenv import load_dotenv
+
+load_dotenv()
+API_KEY=os.getenv("API_KEY")
 # <--- Replace this ONLY
 
 client = OpenAI(api_key=API_KEY)
@@ -56,8 +59,8 @@ def provide_coping_strategy(sentiment):
 # Sidebar Disclaimer
 def display_disclaimer():
     st.sidebar.markdown(
-        "<h3 style='color:#FF4B4B;'>Data Privacy Disclaimer</h3>"
-        "<p style='color:#FF4B4B;'>Avoid sharing personal or sensitive information.</p>",
+        "<h3 style='color:#34495E;'>Data Privacy Disclaimer</h3>"
+        "<p style='color:#7F8C8D;'>Avoid sharing personal or sensitive information.</p>",
         unsafe_allow_html=True
     )
 
@@ -99,7 +102,7 @@ if st.session_state["mood_tracker"]:
 
 # Coping Strategy
 if submit and user_message:
-    st.info(f"*Coping Strategy:* {strategy}")
+    st.info(f"Coping Strategy: {strategy}")
 
 # Sidebar
 st.sidebar.title("Emergency Resources")
@@ -110,7 +113,6 @@ st.sidebar.write("[More Help](https://www.mentalhealth.gov/get-help/immediate-he
 if st.sidebar.button("Show Session Summary"):
     st.sidebar.write("### Your Mood Summary")
     for i, (msg, sent, pol) in enumerate(st.session_state["mood_tracker"]):
-        st.sidebar.write(f"{i+1}. *{sent}* ({pol}) → {msg}")
-
+        st.sidebar.write(f"{i+1}. {sent} ({pol}) → {msg}")
 
 display_disclaimer()
