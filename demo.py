@@ -7,7 +7,7 @@ import os
 # -----------------------------------------
 #  PUT YOUR API KEY HERE (unsafe but works)
 # -----------------------------------------
-API_KEY = "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"
+API_KEY = "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"
 # <--- Replace this ONLY
 
 client = OpenAI(api_key=API_KEY)
@@ -111,5 +111,6 @@ if st.sidebar.button("Show Session Summary"):
     st.sidebar.write("### Your Mood Summary")
     for i, (msg, sent, pol) in enumerate(st.session_state["mood_tracker"]):
         st.sidebar.write(f"{i+1}. *{sent}* ({pol}) → {msg}")
+
 
 display_disclaimer()
